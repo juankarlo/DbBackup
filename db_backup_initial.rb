@@ -9,11 +9,11 @@ databases ={
     small_client: {
         database: 'small_client',
         username: 'small',
-        password: 'p@ssword!',
+        password: 'p@ssWord!',
     }
 }
 
-end_of_iter= ARGV.shift
+end_of_iter = ARGV.shift
 
 databases.each do |name, config|
   if end_of_iter.nil?
@@ -22,7 +22,8 @@ databases.each do |name, config|
     backup_file = config[:database] + '_' + end_of_iter
   end
 
-  mysqldump = "mysqldump -u#{config[:username]} -p#{config[:password]} " + "#{config[:database]}"
+  mysqldump = "mysqldump -u#{config[:username]} -p#{config[:password]}" +
+      "#{config[:database]}"
 
   `#{mysqldump} > #{backup_file}.sql`
   `gzip #{backup_file}.sql`
